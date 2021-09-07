@@ -1,0 +1,18 @@
+#!/usr/bin/env php
+<?php
+/*
+ * This file is part of Mezon PHP Framework.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+ 
+ foreach (array(__DIR__ . '/../../autoload.php', __DIR__ . '/../vendor/autoload.php', __DIR__ . '/vendor/autoload.php') as $file) {
+    if (file_exists($file)) {
+        require($file);
+
+        break;
+    }
+}
+
+\Mezon\Cli\Tool::run();
