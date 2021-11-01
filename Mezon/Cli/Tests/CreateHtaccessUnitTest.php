@@ -19,6 +19,7 @@ class CreateHtaccessUnitTest extends TestCase
     public function testCreateHtaccess(): void
     {
         // setup
+        Layer::clearFilePutContentsData();
         global $argv;
         $argv = [
             'script',
