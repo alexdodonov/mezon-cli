@@ -14,7 +14,7 @@ class Tool
     /**
      * Hash for verb and class correlation
      *
-     * @var array
+     * @var array{"create": Create::class}
      */
     private static $verb2Class = [
         'create' => Create::class
@@ -23,7 +23,7 @@ class Tool
     /**
      * Method returns class name for processing verb from the command line
      *
-     * @return string
+     * @return Create::class
      */
     private static function getVerbHandler(): string
     {

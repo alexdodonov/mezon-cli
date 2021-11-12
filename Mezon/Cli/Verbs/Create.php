@@ -14,7 +14,7 @@ class Create
     /**
      * Hash for entity and class correlation
      *
-     * @var array
+     * @var array<string, class-string>
      */
     private static $entity2Class = [
         'htaccess' => Htaccess::class
