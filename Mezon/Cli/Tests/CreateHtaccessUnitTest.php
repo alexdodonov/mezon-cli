@@ -5,6 +5,7 @@ use PHPUnit\Framework\TestCase;
 use Mezon\Cli\Tool;
 use Mezon\Fs\Layer;
 use Mezon\Conf\Conf;
+use Mezon\Fs\InMemory;
 
 /**
  *
@@ -19,7 +20,6 @@ class CreateHtaccessUnitTest extends TestCase
     public function testCreateHtaccess(): void
     {
         // setup
-        Layer::clearFilePutContentsData();
         global $argv;
         $argv = [
             'script',
@@ -32,7 +32,8 @@ class CreateHtaccessUnitTest extends TestCase
         Tool::run();
 
         // assertions
-        $this->assertStringContainsString('RewriteEngine on', Layer::$fileData[0]);
-        $this->assertStringEndsWith('Entities/../../../../../../.htaccess', Layer::$filePaths[0]);
+        $this->assertStringContainsString(
+            'RewriteEngine on',
+            InMemory::existingFileGetContents(dirname(__DIR__) . '\Entities/../../../../../../.htaccess'));
     }
 }
