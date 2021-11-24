@@ -39,6 +39,7 @@
 		"infection": "php ./vendor/infection/infection/bin/infection",
 		"psalm-self": "php ./vendor/vimeo/psalm/psalm --config=psalm-self.xml --show-info=true --no-cache",
 		"test-unit": "php ./vendor/phpunit/phpunit/phpunit --testsuite unit",
-		"post-install-cmd": "cp ./vendor/mezon/Mezon/Cli/mezon ./mezon"
+		"post-install-cmd": "cp ./vendor/mezon/Mezon/Cli/mezon ./mezon",
+		"post-update-cmd": "cp ./vendor/mezon/Mezon/Cli/mezon ./mezon"
 	}
 }
