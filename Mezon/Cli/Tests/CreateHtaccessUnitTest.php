@@ -3,7 +3,6 @@ namespace Mezon\Cli\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Mezon\Cli\Tool;
-use Mezon\Fs\Layer;
 use Mezon\Conf\Conf;
 use Mezon\Fs\InMemory;
 
@@ -32,8 +31,12 @@ class CreateHtaccessUnitTest extends TestCase
         Tool::run();
 
         // assertions
-        $this->assertStringContainsString(
-            'RewriteEngine on',
-            InMemory::existingFileGetContents(dirname(__DIR__) . '\Entities/../../../../../../.htaccess'));
+        $content = '';
+        if (InMemory::fileExists(dirname(__DIR__) . '\Entities/../../../../../../.htaccess')) {
+            $content = InMemory::existingFileGetContents(dirname(__DIR__) . '\Entities/../../../../../../.htaccess');
+        } elseif (InMemory::fileExists(dirname(__DIR__) . '/Entities/../../../../../../.htaccess')) {
+            $content = InMemory::existingFileGetContents(dirname(__DIR__) . '/Entities/../../../../../../.htaccess');
+        }
+        $this->assertStringContainsString('RewriteEngine on', $content);
     }
 }
