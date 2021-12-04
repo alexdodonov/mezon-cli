@@ -3,8 +3,10 @@ namespace Mezon\Cli;
 
 use Mezon\Cli\Verbs\Create;
 
+// TODO handle not existring 
+
 /**
- * Class for Mezon CLI application
+ * Class for Mezon CLI application $verb2Class and $entity2Class (int Verbs/Create.php)
  *
  * @author gdever
  */
