@@ -1,9 +1,12 @@
 <?php
 namespace Mezon\Cli;
 
-use Mezon\Cli\Verbs\Create;
+use Mezon\Cli\Verbs\ {
+    Create,
+    Version
+}
 
-// TODO handle not existring 
+// TODO handle not existing
 
 /**
  * Class for Mezon CLI application $verb2Class and $entity2Class (int Verbs/Create.php)
@@ -19,7 +22,8 @@ class Tool
      * @var array{"create": Create::class}
      */
     private static $verb2Class = [
-        'create' => Create::class
+        'create' => Create::class,
+        'version'  =>  Version::class
     ];
 
     /**
