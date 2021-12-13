@@ -23,6 +23,6 @@ class Version
      */
     public static function run(): void
     {
-        print "Mezcon CLI 1.0.3\n";
+        echo "Mezcon CLI 1.0.3\n";
     }
 }
