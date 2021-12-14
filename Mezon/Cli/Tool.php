@@ -5,7 +5,7 @@ use Mezon\Cli\Verbs\ {
     Create,
     Help,
     Version
-}
+};
 
 // TODO handle not existing
 
