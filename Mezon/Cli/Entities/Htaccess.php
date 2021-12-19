@@ -16,8 +16,18 @@ class Htaccess
      */
     public static function run(): void
     {
+        $file = getcwd() . '/.htaccess';
+        if (Layer::fileExists($file)) {
+            echo "WARNING: file .htaccess already exists.\n";
+            $confirm = readline('Do you want override it? (y/n) ');
+            if ($confirm === 'n')
+                return;
+        }
+
         Layer::filePutContents(
-            __DIR__ . '/../../../../../../.htaccess',
-            file_get_contents(__DIR__ . '/../Res/Create/htaccess.tpl'));
+            getcwd() . '/.htaccess',
+            Layer::fileGetContents(__DIR__ . '/../Res/Create/htaccess.tpl'));
+
+        echo ".htaccess created successfully!\n";
     }
 }
