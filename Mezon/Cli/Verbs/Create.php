@@ -1,8 +1,12 @@
 <?php
 namespace Mezon\Cli\Verbs;
 
-use Mezon\Cli\Entities\Htaccess;
-use Mezon\Cli\Entities\Project;
+use Mezon\Cli\Entities\ {
+    Application,
+    Fs,
+    Htaccess,
+    Project
+};
 
 /**
  * Class for processing 'create' verb
@@ -15,17 +19,17 @@ class Create
     /**
      * Hash for entity and class correlation
      *
-     * @var array<string, class-string>
+     * @var array{"create": Create::class}
      */
     private static $entity2Class = [
-        'htaccess' => Htaccess::class,
-        'project' => Project::class
+        'application'  =>  Application::class,
+        'fs'           =>  Fs::class,
+        'htaccess'     =>  Htaccess::class,
+        'project'      =>  Project::class
     ];
 
     /**
      * Method returns class name for processing command from the command line
-     *
-     * @return string
      */
     public static function getCommand(): string
     {

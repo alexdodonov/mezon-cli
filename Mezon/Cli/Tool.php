@@ -1,9 +1,13 @@
 <?php
 namespace Mezon\Cli;
 
-use Mezon\Cli\Verbs\Create;
+use Mezon\Cli\Verbs\ {
+    Create,
+    Help,
+    Version
+};
 
-// TODO handle not existring 
+// TODO handle not existing
 
 /**
  * Class for Mezon CLI application $verb2Class and $entity2Class (int Verbs/Create.php)
@@ -19,7 +23,9 @@ class Tool
      * @var array{"create": Create::class}
      */
     private static $verb2Class = [
-        'create' => Create::class
+        'create'   =>  Create::class,
+        'help'     =>  Help::class,
+        'version'  =>  Version::class
     ];
 
     /**
@@ -30,6 +36,9 @@ class Tool
     private static function getVerbHandler(): string
     {
         global $argv;
+
+        if (count($argv) === 1)
+            throw (new \Exception('Verbs not provided!. Try \'mezon help\' for more information.'));
 
         if (isset(static::$verb2Class[$argv[1]])) {
             return static::$verb2Class[$argv[1]];
