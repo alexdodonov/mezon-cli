@@ -2,6 +2,7 @@
 namespace Mezon\Cli\Verbs;
 
 use Mezon\Cli\Entities\Htaccess;
+use Mezon\Cli\Entities\Project;
 
 /**
  * Class for processing 'create' verb
@@ -17,7 +18,8 @@ class Create
      * @var array<string, class-string>
      */
     private static $entity2Class = [
-        'htaccess' => Htaccess::class
+        'htaccess' => Htaccess::class,
+        'project' => Project::class
     ];
 
     /**
