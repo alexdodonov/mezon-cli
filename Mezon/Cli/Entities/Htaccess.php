@@ -1,7 +1,8 @@
 <?php
 namespace Mezon\Cli\Entities;
 
-use Mezon\Fs\Layer;
+use Mezon\Console;
+use Mezon\Fs;
 
 /**
  * Handler for creation of the default .htaccess file
@@ -17,16 +18,20 @@ class Htaccess
     public static function run(): void
     {
         $file = getcwd() . '/.htaccess';
-        if (Layer::fileExists($file)) {
+        if (Fs\Layer::fileExists($file)) {
             echo "WARNING: file .htaccess already exists.\n";
-            $confirm = readline('Do you want override it? (y/n) ');
-            if ($confirm === 'n')
+            $confirm = Console\Layer::readline('Do you want override it? (y/n) ');
+            if ($confirm === 'n') {
                 return;
+            }
         }
 
-        Layer::filePutContents(
-            getcwd() . '/.htaccess',
-            Layer::fileGetContents(__DIR__ . '/../Res/Create/htaccess.tpl'));
+        // TODO make folowing transformations:
+        // replace \ with /
+        // collapse /./ into /
+        // collapse /../Folder/ into /
+        // TODO and then replace file_get_contents with Fs\Layer::fileGetContents
+        Fs\Layer::filePutContents($file, file_get_contents(__DIR__ . '/../Res/Create/htaccess.tpl'));
 
         echo ".htaccess created successfully!\n";
     }

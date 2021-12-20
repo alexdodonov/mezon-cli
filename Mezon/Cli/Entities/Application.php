@@ -1,7 +1,8 @@
 <?php
 namespace Mezon\Cli\Entities;
 
-use Mezon\Fs\Layer;
+use Mezon\Console;
+use Mezon\Fs;
 
 /**
  * Handler for creation of default Application.php file
@@ -18,16 +19,16 @@ class Application
     {
         $file = getcwd() . '/Application.php';
 
-        if (Layer::fileExists($file)) {
+        if (Fs\Layer::fileExists($file)) {
             echo "WARNING: file Application.php already exists.\n";
-            $confirm = readline('Do you want override it? (y/n) ');
+            $confirm = Console\Layer::readline('Do you want override it? (y/n) ');
             if ($confirm === 'n')
                 return;
         }
 
-        Layer::filePutContents(
+        Fs\Layer::filePutContents(
             getcwd() . '/Application.php',
-            Layer::fileGetContents(__DIR__ . '/../Res/Create/Application.tpl'));
+            file_get_contents(__DIR__ . '/../Res/Create/Application.tpl'));
 
         echo "Application.php created!\n";
     }

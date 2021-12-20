@@ -14,6 +14,11 @@
 		"text": ".\/tmp\/infection.txt"
 	},
 	"mutators": {
-		"@default": true
+		"@default": true,
+		"DecrementInteger": {
+			"ignore": [
+				"Mezon\\Cli\\Entities\\Fs::run::57"
+			]
+		}
 	}
 }

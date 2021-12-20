@@ -1,30 +1,44 @@
 <?php
 namespace Mezon\Cli\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Mezon\Cli\Tool;
 
 /**
  *
  * @psalm-suppress PropertyNotSetInConstructor
  */
-class UnexpectedParamsUnitTest extends TestCase
+class UnexpectedParamsUnitTest extends Base
 {
 
     /**
      * Testing unexpected verb exception
      */
-    public function testUnexpectedVeb(): void
+    public function testNoVerbs(): void
     {
-        // setup
-        global $argv;
-        $argv = [
-            1 => 'unexpected verb'
-        ];
-
         // assertions
         $this->expectException(\Exception::class);
-        $this->expectExceptionMessage('The verb "unexpected verb" was not found');
+        $this->expectExceptionMessage('Verbs not provided!. Try \'mezon help\' for more information.');
+
+        // setup
+        $this->setCommand([]);
+
+        // test body
+        Tool::run();
+    }
+
+    /**
+     * Testing unexpected verb exception
+     */
+    public function testUnexpectedVerb(): void
+    {
+        // assertions
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('The verb "unexpected-verb" was not found');
+
+        // setup
+        $this->setCommand([
+            'unexpected-verb'
+        ]);
 
         // test body
         Tool::run();
@@ -40,11 +54,10 @@ class UnexpectedParamsUnitTest extends TestCase
         $this->expectExceptionMessage('The entity "unexpected entity" was not found');
 
         // setup
-        global $argv;
-        $argv = [
-            1 => 'create',
-            2 => 'unexpected entity'
-        ];
+        $this->setCommand([
+            'create',
+            'unexpected entity'
+        ]);
 
         // test body
         Tool::run();

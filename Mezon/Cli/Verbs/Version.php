@@ -17,12 +17,11 @@ class Version
         return self::class;
     }
 
-
     /**
      * Method prints Mezon CLI version
      */
     public static function run(): void
     {
-        echo "Mezcon CLI 1.0.3\n";
+        echo "Mezon CLI 1.0.4\n";
     }
 }

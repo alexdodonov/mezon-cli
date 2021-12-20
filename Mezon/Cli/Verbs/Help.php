@@ -23,11 +23,11 @@ class Help
      * @var array{"create": Create::class}
      */
     private static $doc2Class = [
-        'application'  =>  Application::class,
-        'create'       =>  Create::class,
-        'fs'           =>  Fs::class,
-        'help'         =>  HelpOptions::class,
-        'htaccess'     =>  Htaccess::class,
+        'application' => Application::class,
+        'create' => Create::class,
+        'fs' => Fs::class,
+        'help' => HelpOptions::class,
+        'htaccess' => Htaccess::class
     ];
 
     /**
@@ -37,11 +37,13 @@ class Help
     {
         global $argv;
 
-        if (!isset($argv[2]))
+        if (! isset($argv[2])) {
             return self::class;
+        }
 
-        if (isset(static::$doc2Class[$argv[2]]))
+        if (isset(static::$doc2Class[$argv[2]])) {
             return static::$doc2Class[$argv[2]];
+        }
 
         return self::class;
     }
@@ -49,7 +51,7 @@ class Help
     /**
      * Method prints the files in a give path
      */
-    public static function list(string $path): void
+    private static function list(string $path): void
     {
         foreach (new \DirectoryIterator(__DIR__ . $path) as $file) {
             if ($file->isfile()) {

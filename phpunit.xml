@@ -20,7 +20,7 @@
 		<whitelist>
 			<directory>./Mezon/</directory>
 			<exclude>
-				<directory suffix="UnitTest.php">./Mezon/Cli/Tests</directory>
+				<directory>./Mezon/Cli/Tests</directory>
 				<directory>./vendor</directory>
 				<file>autoloader.php</file>
 			</exclude>

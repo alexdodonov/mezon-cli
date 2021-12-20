@@ -18,7 +18,7 @@ class Create
     /**
      * Hash for entity and class correlation
      *
-     * @var array{"create": Create::class}
+     * @var array{application: Application::class, fs: Fs::class, htaccess: Htaccess::class}
      */
     private static $entity2Class = [
         'application'  =>  Application::class,
