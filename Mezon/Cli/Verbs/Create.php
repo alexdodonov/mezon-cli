@@ -5,6 +5,7 @@ use Mezon\Cli\Entities\ {
     Application,
     Fs,
     Htaccess,
+    Project
 };
 
 /**
@@ -24,6 +25,7 @@ class Create
         'application'  =>  Application::class,
         'fs'           =>  Fs::class,
         'htaccess'     =>  Htaccess::class,
+        'project'      =>  Project::class
     ];
 
     /**
