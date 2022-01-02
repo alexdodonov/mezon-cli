@@ -1,12 +1,16 @@
 <?php
 namespace Mezon\Cli\Doc;
 
+use Mezon\Cli\Interfaces\IEntity;
+
 /**
  * Handler for documentation of the default .htaccess file creation
  *
  * @author gdever
+ *
+ * @implements IEntity<int>
  */
-class Htaccess
+class Htaccess implements IEntity
 {
 
     /**

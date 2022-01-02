@@ -1,12 +1,16 @@
 <?php
 namespace Mezon\Cli\Doc;
 
+use Mezon\Cli\Interfaces\IEntity;
+
 /**
  * Handler for documentation of 'help' verb
  *
  * @author gdever
+ *
+ * @implements IEntity<int>
  */
-class HelpOptions
+class HelpOptions implements IEntity
 {
 
     /**

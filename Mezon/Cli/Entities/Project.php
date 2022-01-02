@@ -1,6 +1,7 @@
 <?php
 namespace Mezon\Cli\Entities;
 
+use Mezon\Cli\Interfaces\IEntity;
 use Mezon\Fs;
 use Mezon\Console;
 
@@ -8,8 +9,10 @@ use Mezon\Console;
  * Handler for creation of the project
  *
  * @author gdever
+ *
+ * @implements IEntity<int>
  */
-class Project
+class Project implements IEntity
 {
 
     /**

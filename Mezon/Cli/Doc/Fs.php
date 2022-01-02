@@ -1,12 +1,16 @@
 <?php
 namespace Mezon\Cli\Doc;
 
+use Mezon\Cli\Interfaces\IEntity;
+
 /**
  * Handler for documentation of default folder structure
  *
  * @author gdever
+ *
+ * @implements IEntity<int>
  */
-class Fs
+class Fs implements IEntity
 {
 
     /**

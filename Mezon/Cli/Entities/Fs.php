@@ -1,6 +1,7 @@
 <?php
 namespace Mezon\Cli\Entities;
 
+use Mezon\Cli\Interfaces\IEntity;
 use Mezon\Fs\Layer;
 use Mezon\Console;
 
@@ -8,8 +9,10 @@ use Mezon\Console;
  * Handler for creation of the default folder structure
  *
  * @author gdever
+ *
+ * @implements IEntity<int>
  */
-class Fs
+class Fs implements IEntity
 {
 
     /**

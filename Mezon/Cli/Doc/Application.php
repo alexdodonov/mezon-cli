@@ -1,12 +1,16 @@
 <?php
 namespace Mezon\Cli\Doc;
 
+use Mezon\Cli\Interfaces\IEntity;
+
 /**
  * Handler for documentation of creation of default Application.php
  *
  * @author gdever
+ *
+ * @implements IEntity<int>
  */
-class Application
+class Application implements IEntity
 {
 
     /**
