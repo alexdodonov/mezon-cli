@@ -17,7 +17,7 @@
 		"@default": true,
 		"DecrementInteger": {
 			"ignore": [
-				"Mezon\\Cli\\Entities\\Fs::run::57"
+				"Mezon\\Cli\\Entities\\Fs::run::60"
 			]
 		}
 	}
