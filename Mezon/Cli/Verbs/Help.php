@@ -9,18 +9,25 @@ use Mezon\Cli\Doc\ {
     Htaccess
 };
 
+use Mezon\Cli\Interfaces\ {
+    IVerb,
+    IEntity
+};
+
 /**
  * Class for processing 'help' verb
  *
  * @author gdever
+ *
+ * @implements IVerb<int>
  */
-class Help
+class Help implements IVerb, IEntity
 {
 
     /**
      * Hash for entity/verb and class correlation
      *
-     * @var array{"create": Create::class}
+     * @var array<string, class-string<IEntity>>
      */
     private static $doc2Class = [
         'application' => Application::class,
@@ -32,6 +39,8 @@ class Help
 
     /**
      * Method returns class name for processing command from the command line
+     *
+     * @return class-string<IEntity>
      */
     public static function getCommand(): string
     {

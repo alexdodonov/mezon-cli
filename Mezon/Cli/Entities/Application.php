@@ -1,6 +1,7 @@
 <?php
 namespace Mezon\Cli\Entities;
 
+use Mezon\Cli\Interfaces\IEntity;
 use Mezon\Console;
 use Mezon\Fs;
 
@@ -8,8 +9,10 @@ use Mezon\Fs;
  * Handler for creation of default Application.php file
  *
  * @author gdever
+ *
+ * @implements IEntity<int>
  */
-class Application
+class Application implements IEntity
 {
 
     /**

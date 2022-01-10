@@ -8,18 +8,25 @@ use Mezon\Cli\Entities\ {
     Project
 };
 
+use Mezon\Cli\Interfaces\ {
+    IVerb,
+    IEntity
+};
+
 /**
  * Class for processing 'create' verb
  *
  * @author gdever
+ *
+ * @implements IVerb<int>
  */
-class Create
+class Create implements IVerb
 {
 
     /**
      * Hash for entity and class correlation
      *
-     * @var array{application: Application::class, fs: Fs::class, htaccess: Htaccess::class}
+     * @var array<string, class-string<IEntity>>
      */
     private static $entity2Class = [
         'application'  =>  Application::class,
@@ -30,8 +37,10 @@ class Create
 
     /**
      * Method returns class name for processing command from the command line
+     *
+     * @return class-string<IEntity>
      */
-    public static function getCommand(): string
+    public static function getCommand()
     {
         global $argv;
 

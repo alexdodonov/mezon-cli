@@ -1,6 +1,7 @@
 <?php
 namespace Mezon\Cli;
 
+use Mezon\Cli\Interfaces\IVerb;
 use Mezon\Cli\Verbs\ {
     Create,
     Help,
@@ -20,7 +21,7 @@ class Tool
     /**
      * Hash for verb and class correlation
      *
-     * @var array{"create": Create::class}
+     * @var array<string, class-string<IVerb>>
      */
     private static $verb2Class = [
         'create' => Create::class,
@@ -31,9 +32,9 @@ class Tool
     /**
      * Method returns class name for processing verb from the command line
      *
-     * @return Create::class
+     * @return class-string<IVerb>
      */
-    private static function getVerbHandler(): string
+    private static function getVerbHandler()
     {
         global $argv;
 
@@ -50,8 +51,6 @@ class Tool
 
     /**
      * Method runs command line application
-     *
-     * @psalm-suppress InvalidStringClass
      */
     public static function run(): void
     {

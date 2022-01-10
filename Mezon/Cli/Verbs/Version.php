@@ -1,16 +1,25 @@
 <?php
 namespace Mezon\Cli\Verbs;
 
+use Mezon\Cli\Interfaces\ {
+    IVerb,
+    IEntity
+};
+
 /**
  * Class for processing 'version' verb
  *
  * @author gdever
+ *
+ * @implements IVerb<int>
  */
-class Version
+class Version implements IVerb, IEntity
 {
 
     /**
      * Method returns class name for processing command from the command line
+     *
+     * @return class-string<IEntity>
      */
     public static function getCommand(): string
     {

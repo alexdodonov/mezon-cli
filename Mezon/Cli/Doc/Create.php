@@ -1,12 +1,16 @@
 <?php
 namespace Mezon\Cli\Doc;
 
+use Mezon\Cli\Interfaces\IEntity;
+
 /**
  * Handler for documentation of 'create' verb
  *
  * @author gdever
+ *
+ * @implements IEntity<int>
  */
-class Create
+class Create implements IEntity
 {
 
     /**
