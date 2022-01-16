@@ -41,7 +41,9 @@ class CreateProjectUnitTest extends TestCase
         Layer::$readlines [] = 'project-name';
 
         // test body
+        ob_start();
         Tool::run();
+        ob_end_flush();
 
         // assertions
         $content = '';
