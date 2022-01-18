@@ -43,7 +43,8 @@ class CreateProjectUnitTest extends TestCase
         // test body
         ob_start();
         Tool::run();
-        ob_end_flush();
+        ob_get_contents();
+        ob_end_clean();
 
         // assertions
         $content = '';
