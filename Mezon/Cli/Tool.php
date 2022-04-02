@@ -44,9 +44,9 @@ class Tool
 
         if (isset(static::$verb2Class[$argv[1]])) {
             return static::$verb2Class[$argv[1]];
-        } else {
-            throw (new \Exception('The verb "' . $argv[1] . '" was not found'));
         }
+
+        echo 'The verb "' . $argv[1] . '" was not found' . "\n";
     }
 
     /**
@@ -54,6 +54,10 @@ class Tool
      */
     public static function run(): void
     {
-        static::getVerbHandler()::getCommand()::run();
+        $verbHandler = static::getVerbHandler();
+
+        if ($verbHandler) {
+            $verbHandler::getCommand()::run();
+        }
     }
 }
