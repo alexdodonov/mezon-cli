@@ -39,7 +39,7 @@ class Tool
         global $argv;
 
         if (count($argv) === 1) {
-            throw (new \Exception('Verbs not provided!. Try \'mezon help\' for more information.'));
+            return static::$verb2Class['help'];
         }
 
         if (isset(static::$verb2Class[$argv[1]])) {
