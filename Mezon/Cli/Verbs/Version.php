@@ -31,6 +31,6 @@ class Version implements IVerb, IEntity
      */
     public static function run(): void
     {
-        echo "Mezon CLI 1.0.4\n";
+        echo "Mezon CLI 1.0.6\n";
     }
 }
