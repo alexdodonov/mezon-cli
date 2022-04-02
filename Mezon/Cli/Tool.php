@@ -32,13 +32,13 @@ class Tool
     /**
      * Method returns class name for processing verb from the command line
      *
-     * @return class-string<IVerb>
+     * @return class-string<IVerb>|null
      */
-    private static function getVerbHandler()
+    private static function getVerbHandler(): ?string
     {
         global $argv;
 
-        if (count($argv) === 1) {
+        if (! isset($argv[1])) {
             return static::$verb2Class['help'];
         }
 
@@ -46,7 +46,7 @@ class Tool
             return static::$verb2Class[$argv[1]];
         }
 
-        echo 'The verb "' . $argv[1] . '" was not found' . "\n";
+        return null;
     }
 
     /**
@@ -54,10 +54,18 @@ class Tool
      */
     public static function run(): void
     {
-        $verbHandler = static::getVerbHandler();
+        global $argv;
 
-        if ($verbHandler) {
-            $verbHandler::getCommand()::run();
+        if (! $verbHandler = static::getVerbHandler()) {
+            echo "The verb \"$argv[1]\" was not found\n";
+            return;
         }
+
+        if (! $command = $verbHandler::getCommand()) {
+            echo "The entity \"$argv[2]\" was not found\n";
+            return;
+        }
+
+        $command::run();
     }
 }

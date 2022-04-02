@@ -38,16 +38,16 @@ class Create implements IVerb
     /**
      * Method returns class name for processing command from the command line
      *
-     * @return class-string<IEntity>
+     * @return class-string<IEntity>|null
      */
-    public static function getCommand()
+    public static function getCommand(): ?string
     {
         global $argv;
 
         if (isset(static::$entity2Class[$argv[2]])) {
             return static::$entity2Class[$argv[2]];
-        } else {
-            throw (new \Exception('The entity "' . $argv[2] . '" was not found'));
         }
+
+        return null;
     }
 }
