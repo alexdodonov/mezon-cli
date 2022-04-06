@@ -23,7 +23,7 @@ class VersionUnitTest extends Base
 
         // assertions
         $this->validateOutput($commandLineOutput, [
-            'Mezon CLI 1.0.6'
+            'Mezon CLI 1.0.7'
         ]);
     }
 }
