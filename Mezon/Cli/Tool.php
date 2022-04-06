@@ -32,21 +32,21 @@ class Tool
     /**
      * Method returns class name for processing verb from the command line
      *
-     * @return class-string<IVerb>
+     * @return class-string<IVerb>|null
      */
-    private static function getVerbHandler()
+    private static function getVerbHandler(): ?string
     {
         global $argv;
 
-        if (count($argv) === 1) {
-            throw (new \Exception('Verbs not provided!. Try \'mezon help\' for more information.'));
+        if (! isset($argv[1])) {
+            return static::$verb2Class['help'];
         }
 
         if (isset(static::$verb2Class[$argv[1]])) {
             return static::$verb2Class[$argv[1]];
-        } else {
-            throw (new \Exception('The verb "' . $argv[1] . '" was not found'));
         }
+
+        return null;
     }
 
     /**
@@ -54,6 +54,18 @@ class Tool
      */
     public static function run(): void
     {
-        static::getVerbHandler()::getCommand()::run();
+        global $argv;
+
+        if (! $verbHandler = static::getVerbHandler()) {
+            echo "The verb \"$argv[1]\" was not found\n";
+            return;
+        }
+
+        if (! $command = $verbHandler::getCommand()) {
+            echo "The entity \"$argv[2]\" was not found\n";
+            return;
+        }
+
+        $command::run();
     }
 }

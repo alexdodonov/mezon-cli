@@ -15,15 +15,24 @@ class UnexpectedParamsUnitTest extends Base
      */
     public function testNoVerbs(): void
     {
-        // assertions
-        $this->expectException(\Exception::class);
-        $this->expectExceptionMessage('Verbs not provided!. Try \'mezon help\' for more information.');
-
         // setup
         $this->setCommand([]);
 
         // test body
-        Tool::run();
+        $commandLineOutput = $this->testBody();
+
+        // assertions
+        $this->validateOutput($commandLineOutput, [
+            'Usage: mezon <verb> <entity> [<options>]',
+            'Verbs:',
+            '  create' . "\n",
+            '  help' . "\n",
+            '  version' . "\n",
+            'Entities:',
+            '  application' . "\n",
+            '  fs' . "\n",
+            '  htaccess' . "\n"
+        ]);
     }
 
     /**
@@ -31,17 +40,18 @@ class UnexpectedParamsUnitTest extends Base
      */
     public function testUnexpectedVerb(): void
     {
-        // assertions
-        $this->expectException(\Exception::class);
-        $this->expectExceptionMessage('The verb "unexpected-verb" was not found');
-
         // setup
         $this->setCommand([
             'unexpected-verb'
         ]);
 
         // test body
-        Tool::run();
+        $commandLineOutput = $this->testBody();
+
+        // assertions
+        $this->validateOutput($commandLineOutput, [
+            'The verb "unexpected-verb" was not found'
+        ]);
     }
 
     /**
@@ -49,17 +59,18 @@ class UnexpectedParamsUnitTest extends Base
      */
     public function testUnexpectedEntity(): void
     {
-        // assertions
-        $this->expectException(\Exception::class);
-        $this->expectExceptionMessage('The entity "unexpected entity" was not found');
-
         // setup
         $this->setCommand([
-            'create',
+           'create',
             'unexpected entity'
         ]);
 
         // test body
-        Tool::run();
+        $commandLineOutput = $this->testBody();
+
+        // test body
+       $this->validateOutput($commandLineOutput, [
+            'The entity "unexpected entity" was not found'
+        ]);
     }
 }
